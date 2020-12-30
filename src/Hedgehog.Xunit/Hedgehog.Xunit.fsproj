@@ -27,7 +27,6 @@ Docs at https://github.com/dharmaturtle/fsharp-hedgehog-xunit
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hedgehog.Experimental" Version="0.2.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.abstractions" Version="2.0.3" />
   </ItemGroup>
@@ -48,7 +47,11 @@ Docs at https://github.com/dharmaturtle/fsharp-hedgehog-xunit
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../../img/hedgehog-logo.png" Pack="true" PackagePath=""/>
+    <None Include="../../img/hedgehog-logo.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\fsharp-hedgehog-experimental\src\Hedgehog.Experimental\Hedgehog.Experimental.fsproj" />
   </ItemGroup>
 
 </Project>

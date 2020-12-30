@@ -127,7 +127,7 @@ type ``Property class tests``(output: Xunit.Abstractions.ITestOutputHelper) =
   let ``Can generate an int and string`` (i: int, s: string) =
     sprintf "Test input: %i, %s" i s |> output.WriteLine
     
-type Int13 = static member __ = { GenX.defaults with Int = Gen.constant 13 }
+type Int13 = static member __ = GenX.defaults |> AutoGenConfig.addGenerator (Gen.constant 13)
 
 module ``Property module with AutoGenConfig tests`` =
 
@@ -154,8 +154,7 @@ An example type definition:
 
 type NonstaticProperty =
   static member __ =
-    { GenX.defaults with
-        Int = Gen.constant 13 }
+    GenX.defaults |> AutoGenConfig.addGenerator (Gen.constant 13)
 ", e.Message)
 
     type NonAutoGenConfig = static member __ = ()
@@ -171,11 +170,10 @@ An example type definition:
 
 type NonAutoGenConfig =
   static member __ =
-    { GenX.defaults with
-        Int = Gen.constant 13 }
+    GenX.defaults |> AutoGenConfig.addGenerator (Gen.constant 13)
 ", e.Message)
 
-type Int2718 = static member __ = { GenX.defaults with Int = Gen.constant 2718 }
+type Int2718 = static member __ = GenX.defaults |> AutoGenConfig.addGenerator (Gen.constant 2718)
 
 [<Properties(typeof<Int13>, 200<tests>)>]
 module ``Module with <Properties> tests`` =
